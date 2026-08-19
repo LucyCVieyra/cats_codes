@@ -1,0 +1,16 @@
+Entrenamiento en CUDA desde la PC
+1. CREAR VENV
+- Abrir Anaconda Prompt
+- Correr: 
+conda create -n cats_pose python=3.10
+- Activarlo:
+conda activate cats_pose
+- Verificar version de python con:
+python --version
+
+Para correr el codigo de Training:
+- Abrir Anaconda prompt e ir al director de Training
+cd Documentos\Tesis\Training
+
+- Activar venv
+conda activate cats_pose
