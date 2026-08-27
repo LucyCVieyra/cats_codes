@@ -22,8 +22,8 @@ from PIL import Image
 # ------------------------------------------------------------------
 # Configuracion
 # ------------------------------------------------------------------
-DATASET_ROOT = r"C:\Users\lucyc\Documentos\Tesis\Training\dataset_3"
-LOGS_ROOT = r"C:\Users\lucyc\Documentos\Tesis\Training\cats_codes"
+DATASET_ROOT = r"C:\dataset_3"
+LOGS_ROOT = r"C:\cats_codes"
 CSV_PATH = os.path.join(DATASET_ROOT, "dataset.csv")
 
 LOG_DIR = os.path.join(LOGS_ROOT, "Training_4")
@@ -59,7 +59,7 @@ LEARNING_RATE = 1e-4
 BETA_ROT = 10.0
 IMAGE_SIZE = 224
 NUM_WORKERS = 4
-EARLY_STOP_PATIENCE = 20  # detiene el entrenamiento si val_loss no mejora en N epocas seguidas
+EARLY_STOP_PATIENCE = 20
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -175,7 +175,7 @@ def pose_loss(pred: torch.Tensor, target: torch.Tensor, beta: float = BETA_ROT):
     t_gt, q_gt = target[:, :3], target[:, 3:]
     q_pred = q_pred / (torch.norm(q_pred, p=2, dim=1, keepdim=True) + 1e-8)
 
-    # q y -q representan la MISMA rotacion (doble cobertura del cuaternion).
+    # q y -q representan la misma rotacion (doble cobertura del cuaternion).
     # Sin esto, el MSE castiga como "totalmente equivocada" una prediccion
     # correcta que cayo del lado opuesto del signo
     dot = torch.sum(q_pred * q_gt, dim=1, keepdim=True)
